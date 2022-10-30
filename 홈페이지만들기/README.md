@@ -19,8 +19,7 @@
           margin-bottom: 0.5rem;
           font-weight: 500;
           line-height: 1.2;
-          text-align: center; }
-```
+          text-align: center; } ```
 
  #### *bulma의 Hero 추가 
     ```html
@@ -29,9 +28,8 @@
               ...
     ```
 
-#### *foundation 의 table 수정 
-```html
-
+ #### *foundation 의 table 수정 *
+ 
 *기본 
 ``` html
 
@@ -88,7 +86,7 @@ table {
   table.stack td {
     border-top: 0; } }
 ```
-수정
+*수정
 ```html
 table {
   border-collapse: collapse;
