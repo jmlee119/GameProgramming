@@ -5,7 +5,7 @@
  
  
  
-  * **Bootstrap의 h1 을 수정* 
+  #### *Bootstrap의 h1 을 수정* 
   * 기본값 
      ```html
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
