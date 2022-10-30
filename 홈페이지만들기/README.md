@@ -15,8 +15,8 @@
   * 수정 
       ``` html  
          h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-  text-align: center; }
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          line-height: 1.2;
+          text-align: center; }
  
