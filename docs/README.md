@@ -4,11 +4,26 @@
 ## Css Framework👍👍
 >[Bootstrap](https://getbootstrap.kr/) | [Bulma](https://bulma.io/) | [Foundation](https://get.foundation/)
 
- * **Bootstrap의 [rounded float-end](https://getbootstrap.com/docs/5.0/content/images/) &
-[table table-bordered](https://getbootstrap.com/docs/4.0/content/tables/#bordered-table)**
+ * **Bootstrap의 h1**
+ * 기존
 ```html
-<img style = "width:300px; height:300px;" class = "rounded float-end" src="images/profile.jpg" alt="홍길동의 얼굴 사진" />
-            <table class = 'table table is-striped'>
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+```
+*추가
+```html
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
 ```
           
                         
@@ -18,7 +33,7 @@
 ```            
  
  
-* **foundation의 [h1] & [label](https://get.foundation/sites/docs-v5/components/labels.html)**
+* **foundation의 table**
 
 * 기존 
 ```html 
