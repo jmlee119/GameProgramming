@@ -7,3 +7,5 @@
 지민이가 사용할 수 있는 언어  
 
 #### chart.js 사용
+
+[구경](https://creative-empanada-2e1be2.netlify.app/)
