@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>가위바위보 게임</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style type="text/css">
+    body { 
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: black;
+    }
+ 
+    p {
+      color: black;
+    }
+
+    footer {
+      background-color: gray;
+    }
+
+    h3 {
+      color: red;
+      font-weight: 200;
+      text-align: center;
+
+    }
+  </style>
+  <script>
+    $(document).ready(() => {
+      var mywin = 0;
+      var comwin = 0;
+      function ComputerRspPlayer(yourRsp) {
+        this.rsp = ['가위', '바위', '보'];
+        this.img = ['./img/가위.png', './img/바위.png', './img/보.png'];
+
+        console.log(Math.floor(Math.random() * 3));
+        this.computerRsp = this.rsp[Math.floor(Math.random() * 3)];
+
+        this.getResult = function () {
+          var setText = document.getElementById("result_text");
+          setText.innerHTML += yourRsp + "::::" + this.computerRsp + "\n";
+          var result = '비겼습니다';
+
+          if (this.computerRsp == yourRsp)
+            return result;
+
+          if (this.computerRsp == "가위") {
+
+            if (yourRsp == "바위") {
+              mywin = mywin + 1;
+              result = "당신이 이겻습니다.";
+            }
+
+            else if (yourRsp == "보") {
+              comwin = comwin + 1;
+              result = "당신이 졋습니다";
+            }
+
+
+          } else if (this.computerRsp == "바위") {
+
+            if (yourRsp == "보") {
+              mywin = mywin + 1;
+              result = "당신이 이겻습니다.";
+            }
+            else if (yourRsp == "가위") {
+              comwin = comwin + 1;
+              result = "당신이 졋습니다";
+            }
+
+          } else if (this.computerRsp == "보") {
+
+            if (yourRsp == "가위") {
+              mywin = mywin + 1;
+              result = "당신이 이겻습니다.";
+            }
+            else if (yourRsp == "바위") {
+              comwin = comwin + 1;
+              result = "당신이 졋습니다";
+            }
+          }
+
+          return result;
+          
+        }
+        
+
+      };
+      function endgame() {
+          if (mywin == 2) {
+            confirm("당신이 이겼어요");
+          }
+          else if (comwin == 2) {
+            confirm("컴퓨터가 이겼습니다.");
+          }
+        }
+        
+      $(".your-rsp").each(function (index, item) {
+
+        $(this).click(() => {
+
+          console.log($(this).text().trim())
+          let rspPlayer = new ComputerRspPlayer($(this).text().trim());
+          let result = rspPlayer.getResult();
+          console.log(result);
+
+          $("#rsp-result").text(result);
+          $("#rsp-img-your").attr("src", "./img/" + $(this).text().trim() + ".png");
+          $("#rsp-img-computer").attr("src", "./img/" + rspPlayer.computerRsp + ".png");
+          $("#rsp-btn-computer").text(rspPlayer.computerRsp);
+        });
+
+      });
+    });
+    function rock() {
+      var audio = document.getElementById("rock");
+      audio.play();
+    }
+    function scissor() {
+      var audio = document.getElementById("scissor");
+      audio.play();
+    }
+    function paper() {
+      var audio = document.getElementById("paper");
+      audio.play();
+    }
+
+    function reload() {
+        confirm('다시 시작 하실건가요?');
+        document.getElementById("result_text").innerHTML = "";
+    }
+  </script>
+
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+      <audio controls src="audio/bgm.mp3" type="audio/mpeg" autoplay>
+      </audio>
+    </nav>
+
+  </header>
+  endgame();
+  <h3>게임 설명 <br>
+    랜덤으로 클릭하면 컴퓨터와 가위바위보 연습 할 수 있습니다.
+
+
+  </h3>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+            <img id="rsp-img-your" src="./img/사용자.png" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title">당신</h5>
+
+              <button class="btn btn-primary m-2 your-rsp" value="PLAY" onclick="scissor()"
+                style="background-color: rgb(236, 205, 240);">가위</a>
+                <audio id="scissor" src="./audio/가위.mp3"></audio>
+                <button class="btn btn-primary m-2 your-rsp" value="PLAY" onclick="rock()"
+                  style="background-color: rgb(236, 205, 240);">바위</a>
+                  <audio id="rock" src="./audio/바위.mp3"></audio>
+                  <button class="btn btn-primary m-2 your-rsp" value="PLAY" onclick="paper()"
+                    style="background-color: rgb(236, 205, 240);">보</a>
+                    <audio id="paper" src="./audio/보.mp3"></audio>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+            <img src="https://taegon.kim/wp-content/uploads/2018/05/image-5.png" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h3 class="card-title ">결과</h5>
+                <p id="rsp-result"></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+            <img id="rsp-img-computer" src="./img/컴퓨터.png" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title ">컴퓨터</h5>
+              <button id="rsp-btn-computer" class="btn btn-primary m-2">가위</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <hr>
+  <textarea id="result_text" cols="10" rows="7">나 :::: 컴퓨터  
+  
+  </textarea>
+
+  <footer class="text-center">
+    <hr />
+    
+    <p>&copy; made by 지민</p>
+    <button onclick="reload()">
+      재시작
+    </button>
+    <input type="button" value="현재창 닫기" onClick="window.close()">
+  </footer>
+  <!-- Optional JavaScript; choose one of the two! --> 
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+   
+   
+   
+    -->
+</body>
+
+</html>
